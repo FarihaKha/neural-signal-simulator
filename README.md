@@ -61,8 +61,69 @@ Returns aggregated spike statistics for the specified time window.
 ```
 
 ### Installation & Setup
-Create project directory
+1. Create project directory
 ```
 mkdir neural-signal-simulator
 cd neural-signal-simulator
 ```
+2. Create a virtual environment
+```
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+3. Install dependencies
+```
+pip install fastapi uvicorn sqlalchemy
+```
+4. Create project files
+Add the provided Python files (app.py, db.py, generator.py, models.py) to your project directory.
+5. Create frontend directory and files
+```
+mkdir frontend
+```
+Add index.html and app.js to the frontend directory.
+6. Run the application
+```
+uvicorn app:app --reload
+```
+7. Access the dashboard
+Open your browser and navigate to http://localhost:8000
+
+### Configuration
+The simulator can be configured by modifying the SpikeGenerator parameters in app.py:
+```
+generator = SpikeGenerator(neurons=8, spikes_per_sec=80)
+```
+- neurons: Number of simulated neurons (default: 8)
+- spikes_per_sec: Total spikes per second across all neurons (default: 80)
+
+### Database Schema
+The spikes table contains:
+- id: Primary key (auto-incrementing)
+- neuron_id: Identifier for the neuron (1-based)
+- ts: Timestamp of the spike event (UTC)
+- amplitude: Simulated spike amplitude (normal distribution around 1.0)
+
+Indexes are created on neuron_id, ts, and a composite index for efficient querying.
+
+Frontend Features
+- Real-time bar chart showing spike counts per neuron
+- Total spike counter for the last 60 seconds
+- Responsive design that works on desktop and mobile devices
+- Automatic updates every second
+
+Performance Considerations
+- The database uses appropriate indexing for time-series queries
+- The generator includes error handling to prevent application crashes
+- Query limits prevent excessive data retrieval
+- The frontend uses efficient Chart.js updates without full redraws
+
+Development
+To modify or extend the project:
+1. Add new endpoints: Edit app.py and add new route handlers
+2. Modify data model: Update models.py and regenerate the database
+3. Change generation logic: Adjust parameters in generator.py
+4. Customize frontend: Modify index.html and app.js in the frontend directory
+
+License
+This project is open source and available under the MIT License.
