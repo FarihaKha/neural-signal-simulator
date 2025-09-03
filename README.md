@@ -1,10 +1,16 @@
 # Neural Signal Simulator
 
-A real-time neural spike activity simulator and visualization dashboard built with FastAPI, SQLite, and Chart.js.
+A real-time neural spike activity simulator and interactive dashboard built with **FastAPI**, **SQLite**, and **Chart.js**.
 
 ## Overview
 
 This project simulates neural spike activity from multiple neurons in real-time, stores the data in a SQLite database, and provides a web dashboard to visualize spike counts and statistics. It's designed to mimic the behavior of neural recording systems for demonstration and testing purposes.
+
+## Tech Stack
+
+- **Backend:** Python, FastAPI, SQLAlchemy, SQLite  
+- **Frontend:** HTML, JavaScript, Chart.js  
+- **Other Tools:** Uvicorn, Virtualenv  
 
 ## Features
 
@@ -61,6 +67,7 @@ Returns aggregated spike statistics for the specified time window.
 ```
 
 ## Installation & Setup
+
 1. Create project directory
 ```
 mkdir neural-signal-simulator
@@ -98,6 +105,7 @@ generator = SpikeGenerator(neurons=8, spikes_per_sec=80)
 - spikes_per_sec: Total spikes per second across all neurons (default: 80)
 
 ## Database Schema
+
 The spikes table contains:
 - id: Primary key (auto-incrementing)
 - neuron_id: Identifier for the neuron (1-based)
@@ -107,18 +115,21 @@ The spikes table contains:
 Indexes are created on neuron_id, ts, and a composite index for efficient querying.
 
 ## Frontend Features
+
 - Real-time bar chart showing spike counts per neuron
 - Total spike counter for the last 60 seconds
 - Responsive design that works on desktop and mobile devices
 - Automatic updates every second
 
 ## Performance Considerations
+
 - The database uses appropriate indexing for time-series queries
 - The generator includes error handling to prevent application crashes
 - Query limits prevent excessive data retrieval
 - The frontend uses efficient Chart.js updates without full redraws
 
 ## Development
+
 To modify or extend the project:
 1. Add new endpoints: Edit app.py and add new route handlers
 2. Modify data model: Update models.py and regenerate the database
@@ -126,4 +137,5 @@ To modify or extend the project:
 4. Customize frontend: Modify index.html and app.js in the frontend directory
 
 ## License
+
 This project is open source and available under the MIT License.
