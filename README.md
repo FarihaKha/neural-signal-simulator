@@ -16,7 +16,7 @@ This project simulates neural spike activity from multiple neurons in real-time,
 - **Configurable Parameters**: Adjustable time windows, spike rates, and neuron counts
 
 ## Project Structure
-
+```
 ├── app.py # FastAPI application and endpoints
 ├── db.py # Database configuration and session management
 ├── generator.py # Spike generation thread and logic
@@ -24,7 +24,7 @@ This project simulates neural spike activity from multiple neurons in real-time,
 ├── index.html # Frontend dashboard HTML
 ├── app.js # Frontend JavaScript for chart updates
 └── signals.db # SQLite database (created automatically)
-
+```
 
 ## API Endpoints
 
